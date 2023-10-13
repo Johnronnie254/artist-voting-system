@@ -1,11 +1,44 @@
+
+body{
+    background-image: url(https://i.pinimg.com/originals/d7/73/05/d77305f816c7e2a37dae14b8f32603e5.jpg);
+}
+nav{
+    background-color: azure;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    margin-left: 800px;
+}
+nav ul li{
+    padding: 15px;
+    font-size: 20px;
+}
+
+
 .search-wrapper{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: azure;
 }
 
 input{
     font-size: 25px;
+}
+.search{
+    display: inline-flex;
+    text-align: center;
+    margin-left: 500px;
+    width: 400px;
+    border-radius:15px;
+    min-width: 150px;
+    max-width: fit-content;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .usercard{
@@ -13,6 +46,8 @@ input{
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
     margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 .image{
     width: 250px;
@@ -28,4 +63,17 @@ input{
 .hide {
     display: none;
   }
-  
+
+  .voteButton{
+    margin-bottom: 15px;
+    background-color: black;
+    color: whitesmoke;
+    border-radius: 5px white;
+  }
+
+  .currentWinner{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }

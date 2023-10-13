@@ -1,31 +1,45 @@
-const userTemplate = document.querySelector(".user-template");
-const usercard = document.querySelector(".usercard"); 
-const searchInput = document.querySelector(".search"); 
-let users =[]
+document.addEventListener("DOMContentLoaded", function() {  // An eventListener "DOMContentLoaded" to ensure every DOM element is executed
+    const userTemplate = document.querySelector(".user-template");
+    const usercard = document.querySelector(".usercard"); 
+    const searchInput = document.querySelector(".search"); 
+    let users =[];
 
-
-
-searchInput.addEventListener('input', (e) => {
-    const value = e.target.value.toLowerCase();
-    users.forEach(user => {
-        const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
-                          (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
-        user.element.classList.toggle("hide", !isVisible);
+    searchInput.addEventListener('input', (e) => {  //An eventListener for search Input and also ensure search engine works effectively
+        const value = e.target.value.toLowerCase();
+        users.forEach(user => {
+            const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
+                              (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
+            user.element.classList.toggle("hide", !isVisible);
+        });
     });
-});
 
-fetch("db.json")
-    .then((res) => res.json())
-    .then((data) => {
-        users = data.songs.map(user => {
-            const card = userTemplate.content.cloneNode(true).children[0];
-            const songName = card.querySelector("[song-name]");
-            const artistName = card.querySelector("[artist-name]");
-            const artistCover = card.querySelector(".image");
-            songName.textContent = user.title;
-            artistName.textContent = user.artist;
-            artistCover.src = user.artwork;
-            usercard.append(card);
-            return {  Song: user.title, artist: user.artist, element: card };
+    fetch("db.json") ///fetching data from JSON file to bring it to the DOM
+        .then((res) => res.json())
+        .then((data) => {
+            users = data.songs.map(user => {
+                const card = userTemplate.content.cloneNode(true).children[0];
+                const songName = card.querySelector("[song-name]");
+                const artistName = card.querySelector("[artist-name]");
+                const artistCover = card.querySelector(".image");
+                const audio =card.querySelector(".audio")
+                const voteButton = card.querySelector(".vote-button");
+                const totalVotes = card.querySelector(".totalVotes");
+
+                songName.textContent = user.title;
+                artistName.textContent = user.artist;
+                artistCover.src = user.artwork;
+                audio.src = user.url;
+
+                voteButton.addEventListener('click', function() {   //click button for the user to vote
+                    totalVotes.textContent = parseInt(totalVotes.textContent) + 1;
+
+                    }
+                
+                );
+
+            
+                usercard.append(card); //appending the card to fetch all other elements in the object data
+                return {  Song: user.title, artist: user.artist, element: card };
+            });
         });
     });

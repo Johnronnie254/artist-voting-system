@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <h1 style="margin-top:15px;">SadWorld Voting</h1>
+<ul>
+    <li> <a href="">Home</a></li>
+    <li><a href="">About Us</a></li>
+    <li><a href="">Contact Us</a></li>
+    <li><a href="">Sign Up</a></li>
+    <li><a href="">Log In</a></li>
+</ul>
+
+
+    </nav>
     <div class="search-wrapper">
-        <label for="search">Search your Favorite Artist</label>
+        <label for="search" style="text-align: center; font-size: 25px;"></label>
         <br>
-        <input type="search" class="search"> 
+        <input type="search" class="search" placeholder="Enter your favorite Artist"> 
     </div>
     
-    <div class="user-card usercard"> 
+    <div class="usercard"> 
         
     </div>
     
@@ -21,10 +33,16 @@
     <template class ="user-template">
         <div class="body" template-body>
             <h2 song-name></h2>
-            <h2 artist-name></h2>
+            <h3 artist-name></h3>
+            <h4>My Votes: <span class="totalVotes">0</span></h4>
+            <button  class="vote-button">Click to Vote</button>
             <img src="" alt="" class="image" artist-cover>
+            <audio controls>
+                <source src="" type="audio/ogg" class="audio" style="width: fit-content;">
+            </audio>
         </div>
     </template>
+
 
     <script src="script.js"></script>
 </body>
