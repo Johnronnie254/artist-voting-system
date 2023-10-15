@@ -59,7 +59,11 @@ document.addEventListener("DOMContentLoaded", function() {  // An eventListener 
     });
 
 
-
+const aboutUs = document.querySelector('.about-us') // getting the about us content
+aboutUs.addEventListener('click', ()=>{
+   const aboutUsContent = document.querySelector('.paragraphContent')
+   aboutUsContent.textContent = "Here are our selected artists that you can vote for. You can only vote once for your best artist"
+})
 
 
 
