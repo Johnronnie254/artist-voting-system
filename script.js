@@ -1,19 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {  // An eventListener "DOMContentLoaded" to ensure every DOM element is executed
+document.addEventListener("DOMContentLoaded", function() {
     const userTemplate = document.querySelector(".user-template");
-    const usercard = document.querySelector(".usercard"); 
-    const searchInput = document.querySelector(".search"); 
-    let users =[];
+    const usercard = document.querySelector(".usercard");
+    const searchInput = document.querySelector(".search");
+    let users = [];
 
-    searchInput.addEventListener('input', (e) => {  //An eventListener for search Input and also ensure search engine works effectively
+    searchInput.addEventListener('input', (e) => {
         const value = e.target.value.toLowerCase();
         users.forEach(user => {
-            const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
-                              (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
+            const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) ||
+                (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
             user.element.classList.toggle("hide", !isVisible);
         });
     });
 
-    fetch("db.json") ///fetching data from JSON file to bring it to the DOM
+    fetch("db.json")
         .then((res) => res.json())
         .then((data) => {
             users = data.songs.map(user => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {  // An eventListener 
                 const songName = card.querySelector("[song-name]");
                 const artistName = card.querySelector("[artist-name]");
                 const artistCover = card.querySelector(".image");
-                const audio =card.querySelector(".audio")
+                const audio = card.querySelector(".audio");
                 const voteButton = card.querySelector(".vote-button");
                 const totalVotes = card.querySelector(".totalVotes");
 
@@ -30,41 +30,32 @@ document.addEventListener("DOMContentLoaded", function() {  // An eventListener 
                 artistCover.src = user.artwork;
                 audio.src = user.url;
 
-               let voteCount = 0;
+                let voteCount = 0;
 
-                voteButton.addEventListener("click", () =>{ //an eventListner that adds 'my votes' when the button is clicked
+                voteButton.addEventListener("click", () => {
                     if (voteButton.classList.contains("voted")) {
                         voteCount--;
-                        voteButton.textContent = "vote"
-                        alert(this.voteButton + "You have voted")
+                        voteButton.textContent = "vote";
+                        alert("You have voted");
                     } else {
                         voteCount++;
-                        voteButton.textContent = "voted"
-                        alert(this.voteButton + "You can vote")
+                        voteButton.textContent = "voted";
+                        alert("You can vote");
                     }
-            
-                    voteButton.classList.toggle("voted"); //Visually show that the button has been clicked
-                    totalVotes.textContent = voteCount; //return the new vote after counting
+
+                    voteButton.classList.toggle("voted");
+                    totalVotes.textContent = voteCount;
                 });
 
-               
-    
-    
-
-            
-                usercard.append(card); //appending the card to fetch all other elements in the object data
-                return {  Song: user.title, artist: user.artist, element: card };
+                usercard.append(card);
+                return { Song: user.title, artist: user.artist, element: card };
             });
-        });
-    });
 
-
-const aboutUs = document.querySelector('.about-us') // getting the about us content
-aboutUs.addEventListener('click', ()=>{
-   const aboutUsContent = document.querySelector('.paragraphContent')
-   aboutUsContent.textContent = "Here are our selected artists that you can vote for. You can only vote once for your best artist"
-})
-
-
-
-    
+            const aboutUs = document.querySelector('.about-us');
+            aboutUs.addEventListener('click', () => {
+                const aboutUsContent = document.querySelector('.paragraphContent');
+                aboutUsContent.textContent = "Here are our selected artists that you can vote for. You can only vote once for your best artist";
+            });
+        })
+        .catch(error => console.error('Error:', error));
+});
