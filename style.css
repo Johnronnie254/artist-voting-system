@@ -64,16 +64,15 @@ input{
     display: none;
   }
 
-  .voteButton{
+  .vote-button{
     margin-bottom: 15px;
     background-color: black;
     color: whitesmoke;
     border-radius: 5px white;
+    margin-bottom: 15px;
   }
 
-  .currentWinner{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-  }
+ .voted{
+    background: blue;
+    margin-bottom: 15px;
+ }

@@ -30,12 +30,26 @@ document.addEventListener("DOMContentLoaded", function() {  // An eventListener 
                 artistCover.src = user.artwork;
                 audio.src = user.url;
 
-                voteButton.addEventListener('click', function() {   //click button for the user to vote
-                    totalVotes.textContent = parseInt(totalVotes.textContent) + 1;
+               let voteCount = 0;
 
+                voteButton.addEventListener("click", () =>{ //an eventListner that adds 'my votes' when the button is clicked
+                    if (voteButton.classList.contains("voted")) {
+                        voteCount--;
+                        voteButton.textContent = "vote"
+                        alert(this.voteButton + "You have voted")
+                    } else {
+                        voteCount++;
+                        voteButton.textContent = "voted"
+                        alert(this.voteButton + "You can vote")
                     }
-                
-                );
+            
+                    voteButton.classList.toggle("voted"); //Visually show that the button has been clicked
+                    totalVotes.textContent = voteCount; //return the new vote after counting
+                });
+
+               
+    
+    
 
             
                 usercard.append(card); //appending the card to fetch all other elements in the object data
@@ -43,3 +57,10 @@ document.addEventListener("DOMContentLoaded", function() {  // An eventListener 
             });
         });
     });
+
+
+
+
+
+
+    
