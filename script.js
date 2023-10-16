@@ -30,20 +30,20 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
                 artistCover.src = user.artwork;
                 audio.src = user.url;
 
-                let voteCount = 0;
+                let voteCount = 0; //setting up vote count to 0 for easy arithmetic in the function below for eventListener
 
                 voteButton.addEventListener("click", () => {  //an event listener to increase value of artist votes
                     if (voteButton.classList.contains("voted")) {
                         voteCount--;
                         voteButton.textContent = "vote"
-                        alert(this.voteButton + "You have voted")
+                      //  alert(this.voteButton + "You have voted") 
                     } else {
                         voteCount++;
                         voteButton.textContent = "voted"
-                        alert(this.voteButton + "You can vote")
+                      //  alert(this.voteButton + "You can vote")
                     }
 
-                    //adding the element voted
+                    voteButton.classList.toggle("voted"); //adding the element voted
                     totalVotes.textContent = voteCount;
                 });
 
