@@ -76,7 +76,7 @@ input{
  }
 
  .aboutSection {
-    border: 2px solid red; /* Add a border for testing */
+    /**border: 2px solid red; /* Add a border for testing */
     margin-bottom: 30px;
     margin-top: 40px;
     display: flex;
@@ -86,7 +86,7 @@ input{
 }
 
 .contactUs {
-    border: 2px solid red; /* Add a border for testing */
+    /**border: 2px solid red; /* Add a border for testing */
     margin-bottom: 30px;
     margin-top: 40px;
     display: flex;
