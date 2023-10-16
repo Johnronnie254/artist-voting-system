@@ -4,9 +4,16 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
     const searchInput = document.querySelector(".search"); 
     let users =[];
 
-   
+    searchInput.addEventListener('input', (e) => {   //event listener to set value to the search bar content and also set search engine working
+        const value = e.target.value.toLowerCase();
+        users.forEach(user => {
+            const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
+                            (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
+            user.element.classList.toggle("hide", !isVisible);
+        });
+    });
 
-    fetch("db.json")
+    fetch("db.json") //fetching json data to be used
         .then((res) => res.json())
         .then((data) => {
             users = data.songs.map(user => {
@@ -25,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
 
                 let voteCount = 0;
 
-                voteButton.addEventListener("click", () => {
+                voteButton.addEventListener("click", () => {  //an event listener to increase value of artist votes
                     if (voteButton.classList.contains("voted")) {
                         voteCount--;
                         voteButton.textContent = "vote"
@@ -36,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
                         alert(this.voteButton + "You can vote")
                     }
 
-                    voteButton.classList.toggle("voted");
+                    //adding the element voted
                     totalVotes.textContent = voteCount;
                 });
 
