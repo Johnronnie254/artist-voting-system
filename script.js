@@ -1,11 +1,14 @@
-document.addEventListener("DOMContentLoaded", function() {  //an event listener to display all content when the page is loaded
+document.addEventListener("DOMContentLoaded", function() {  
+    // Event listener to display all content when the page is loaded
+
     const userTemplate = document.querySelector(".user-template");
     const usercard = document.querySelector(".usercard"); 
     const searchInput = document.querySelector(".search"); 
     let users =[];
 
-    searchInput.addEventListener('input', (e) => {   //event listener to set value to the search bar content and also set search engine working
-        const value = e.target.value.toLowerCase();
+    searchInput.addEventListener('input', (e) => {   
+        // Event listener to set value to the search bar content and also set search engine working
+        const value = e.target.value.toLowerCase(); 
         users.forEach(user => {
             const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
                             (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
@@ -13,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
         });
     });
 
-    fetch("db.json") //fetching json data to be used
+    // Fetching json data to be used
+    fetch("db.json") 
         .then((res) => res.json())
         .then((data) => {
             users = data.songs.map(user => {
@@ -30,21 +34,23 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
                 artistCover.src = user.artwork;
                 audio.src = user.url;
 
-                let voteCount = 0; //setting up vote count to 0 for easy arithmetic in the function below for eventListener
+                let voteCount = 0; 
 
-                voteButton.addEventListener("click", () => {  //an event listener to increase value of artist votes
-                    if (voteButton.classList.contains("voted")) {
-                        voteCount--;
-                        voteButton.textContent = "vote"
-                      //  alert(this.voteButton + "You have voted") 
-                    } else {
+                voteButton.addEventListener("click", () => {  
+                    // Event listener to increase value of artist votes
+                    if (!voteButton.classList.contains("voted")) {
                         voteCount++;
                         voteButton.textContent = "voted"
-                      //  alert(this.voteButton + "You can vote")
-                    }
+                        alert( "Congratulations! You just voted")
+                        voteButton.classList.add("voted");
+                        totalVotes.textContent = voteCount;
 
-                    voteButton.classList.toggle("voted"); //adding the element voted
-                    totalVotes.textContent = voteCount;
+                        // Disable all vote buttons after one vote
+                        const allVoteButtons = document.querySelectorAll(".vote-button");
+                        allVoteButtons.forEach(button => {
+                            button.disabled = true;
+                        });
+                    }
                 });
 
                 usercard.append(card);
@@ -58,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {  //an event listener 
             contactUsContent.textContent = 'Call us through: 0796521993 or reach us out on all our social media pages: sadworldsongs';
 
             const aboutSection = document.querySelector('.aboutSection');
-           // aboutSection.style.backgroundColor = 'lightblue'; //adding background color for the about us section"
             aboutSection.appendChild(aboutUsContent);
 
             const contactUs = document.querySelector('.contactUs');
