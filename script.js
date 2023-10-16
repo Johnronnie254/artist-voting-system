@@ -51,24 +51,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 return {  Song: user.title, artist: user.artist, element: card };
             });
 
-            const aboutSection = document.querySelector('.aboutSection');
             const aboutUsContent = document.querySelector('.paragraphContent');
+            aboutUsContent.textContent = "Here are our selected artists that you can vote for. You can only vote once for your best artist";
 
-            aboutSection.addEventListener('click', () => {
-                aboutSection.style.backgroundColor = 'lightblue'; //adding background color for the about us section"
-                aboutUsContent.textContent = "Here are our selected artists that you can vote for. You can only vote once for your best artist";
+            const contactUsContent = document.querySelector('.contactUsContent');
+            contactUsContent.textContent = 'Call us through: 0796521993 or reach us out on all our social media pages: sadworldsongs';
 
-                if (!aboutSection.contains(aboutUsContent)) {
-                    aboutSection.appendChild(aboutUsContent);
-                }
-            });
+            const aboutSection = document.querySelector('.aboutSection');
+            aboutSection.style.backgroundColor = 'lightblue'; //adding background color for the about us section"
+            aboutSection.appendChild(aboutUsContent);
 
-            const contactUs =document.querySelector('.contactUs')
-            const contactUsContent = document.querySelector('.contactUsContent')
-            contactUs.addEventListener('click', function (){
-                contactUsContent.textContent = ' Call us through: 0796521993 or reach us out on all our social media pages: sadworldsongs'
-                contactUs.appendChild(contactUsContent)
-            })
+            const contactUs = document.querySelector('.contactUs');
+            contactUs.appendChild(contactUsContent);
         })
         .catch(error => console.error('Error:', error));
 });
