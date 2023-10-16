@@ -1,17 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {  
+document.addEventListener("DOMContentLoaded", function() {  //an event listener to display all content when the page is loaded
     const userTemplate = document.querySelector(".user-template");
     const usercard = document.querySelector(".usercard"); 
     const searchInput = document.querySelector(".search"); 
     let users =[];
 
-    searchInput.addEventListener('input', (e) => {  
-        const value = e.target.value.toLowerCase();
-        users.forEach(user => {
-            const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
-                            (typeof user.artist === 'string' && user.artist.toLowerCase().includes(value));
-            user.element.classList.toggle("hide", !isVisible);
-        });
-    });
+   
 
     fetch("db.json")
         .then((res) => res.json())
