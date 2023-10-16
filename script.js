@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
             contactUsContent.textContent = 'Call us through: 0796521993 or reach us out on all our social media pages: sadworldsongs';
 
             const aboutSection = document.querySelector('.aboutSection');
-            aboutSection.style.backgroundColor = 'lightblue'; //adding background color for the about us section"
+           // aboutSection.style.backgroundColor = 'lightblue'; //adding background color for the about us section"
             aboutSection.appendChild(aboutUsContent);
 
             const contactUs = document.querySelector('.contactUs');
