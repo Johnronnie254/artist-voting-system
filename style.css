@@ -74,3 +74,7 @@ input{
     background: blue;
     margin-bottom: 15px;
  }
+
+ .aboutSection {
+    border: 2px solid red; /* Add a border for testing */
+}
