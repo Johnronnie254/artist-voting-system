@@ -55,13 +55,15 @@ document.addEventListener("DOMContentLoaded", function() {
             const aboutUsContent = document.querySelector('.paragraphContent');
 
             aboutSection.addEventListener('click', () => {
-                aboutSection.style.backgroundColor = 'lightblue'; 
+                aboutSection.style.backgroundColor = 'lightblue'; //adding background color for the about us section"
                 aboutUsContent.textContent = "Here are our selected artists that you can vote for. You can only vote once for your best artist";
 
                 if (!aboutSection.contains(aboutUsContent)) {
                     aboutSection.appendChild(aboutUsContent);
                 }
             });
+
+            const contactUs =document.querySelector('.contactUs')
         })
         .catch(error => console.error('Error:', error));
 });
