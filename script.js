@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {  
-    // Event listener to display all content when the page is loaded
-
     const userTemplate = document.querySelector(".user-template");
     const usercard = document.querySelector(".usercard"); 
     const searchInput = document.querySelector(".search"); 
     let users =[];
 
     searchInput.addEventListener('input', (e) => {   
-        // Event listener to set value to the search bar content and also set search engine working
         const value = e.target.value.toLowerCase(); 
         users.forEach(user => {
             const isVisible = (typeof user.title === 'string' && user.title.toLowerCase().includes(value)) || 
@@ -16,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Fetching json data to be used
     fetch("db.json") 
         .then((res) => res.json())
         .then((data) => {
@@ -35,20 +31,33 @@ document.addEventListener("DOMContentLoaded", function() {
                 audio.src = user.url;
 
                 let voteCount = 0; 
+                let voted = false; 
 
                 voteButton.addEventListener("click", () => {  
-                    // Event listener to increase value of artist votes
-                    if (!voteButton.classList.contains("voted")) {
+                    if (!voted) {
                         voteCount++;
-                        voteButton.textContent = "voted"
+                        voteButton.textContent = "Voted"
                         alert( "Congratulations! You just voted")
                         voteButton.classList.add("voted");
                         totalVotes.textContent = voteCount;
+                        voted = true;
 
-                        // Disable all vote buttons after one vote
                         const allVoteButtons = document.querySelectorAll(".vote-button");
                         allVoteButtons.forEach(button => {
-                            button.disabled = true;
+                            if (button !== voteButton) {
+                                button.disabled = true;
+                            }
+                        });
+                    } else {
+                        voteCount--;
+                        voteButton.textContent = "Vote"
+                        voteButton.classList.remove("voted");
+                        totalVotes.textContent = voteCount;
+                        voted = false;
+
+                        const allVoteButtons = document.querySelectorAll(".vote-button");
+                        allVoteButtons.forEach(button => {
+                            button.disabled = false;
                         });
                     }
                 });
