@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             const contactUs =document.querySelector('.contactUs')
+            const contactUsContent = document.querySelector('.contactUsContent')
+            contactUs.addEventListener('click', function (){
+                contactUsContent.textContent = ' Call us through: 0796521993 or reach us out on all our social media pages: sadworldsongs'
+                contactUs.appendChild(contactUsContent)
+            })
         })
         .catch(error => console.error('Error:', error));
 });
